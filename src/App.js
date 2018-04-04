@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import Control from "./components/Control"
 import TaskList from "./components/TaskList"
+import DemoRedux from "./Reduxs/DemoRedux";
 
 class App extends Component {
     constructor(props){

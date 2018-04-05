@@ -29,7 +29,6 @@ class Sort extends Component{
     }
 	render(){
         var {sort} = this.state;
-        console.log(sort);
 	    return(
 			<div className= {this.state.isOpen ? "dropdown open" : "dropdown"}>
                 <button 

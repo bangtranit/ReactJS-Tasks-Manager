@@ -9,7 +9,6 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            tasks : [], //id: unique, name, status
             isDisplayForm : false,
             taskEditing : null,
             filter :{
@@ -22,24 +21,6 @@ class App extends Component {
                 value : '1'
             }
         }
-    }
-
-    componentWillMount(){
-        if (localStorage && localStorage.getItem('tasks')) {
-            var tasks = JSON.parse(localStorage.getItem('tasks'));
-            this.setState({
-                tasks:tasks
-            });
-        }
-    }
-
-    s4(){
-        return Math.floor((1+Math.random()) * 0x10000).toString(16).substring(1);
-    }
-
-    generateID(){
-        return this.s4() + this.s4() + "_" + this.s4() + "_" + this.s4() + "_" + this.s4() + "_" + 
-        this.s4() + "_" + this.s4() + "_" + this.s4() + "_" + this.s4();
     }
 
     onReciveCickAddNew = (params) =>{
@@ -158,43 +139,49 @@ class App extends Component {
     }
 
     render() {
-        var {tasks, isDisplayForm, taskEditing, filter, keyword, sort} = this.state;
-        if (filter) {
-            if (filter.name) {
-                tasks = tasks.filter((task) =>{
-                    return task.name.toLowerCase().indexOf(filter.name) !== -1;
-                });
-            }
-            tasks = tasks.filter((task) =>{
-                if (filter.status === -1) {
-                    return task;
-                }else{
-                    return task.status === (filter.status === 1 ? true : false);
-                }
-            });
-        }
-        if (keyword) {
-            tasks = tasks.filter((task) =>{
-                return task.name.toLowerCase().indexOf(keyword) !== -1;
-            });
-        }
-        if (sort) {
-            if (sort.y === 'name') {
-                            console.log("aaaaaaa", tasks);
+        var { 
+            isDisplayForm, 
+            taskEditing, 
+            //filter, 
+            //keyword, 
+            //sort
+        } = this.state;
+        // if (filter) {
+        //     if (filter.name) {
+        //         tasks = tasks.filter((task) =>{
+        //             return task.name.toLowerCase().indexOf(filter.name) !== -1;
+        //         });
+        //     }
+        //     tasks = tasks.filter((task) =>{
+        //         if (filter.status === -1) {
+        //             return task;
+        //         }else{
+        //             return task.status === (filter.status === 1 ? true : false);
+        //         }
+        //     });
+        // }
+        // if (keyword) {
+        //     tasks = tasks.filter((task) =>{
+        //         return task.name.toLowerCase().indexOf(keyword) !== -1;
+        //     });
+        // }
+        // if (sort) {
+        //     if (sort.y === 'name') {
+        //                     console.log("aaaaaaa", tasks);
 
-                tasks.sort((a,b) => {
-                    if (a.name > b.name) return sort.value;
-                    else if (a.name < b.name) return -sort.value;
-                    else return 0;
-                }); 
-            }else{
-                tasks.sort((a,b)=>{
-                    if (a.status > b.status) return -sort.value;
-                    else if (a.status < b.status) return sort.value;
-                    else return 0;
-                });
-            }
-        }
+        //         tasks.sort((a,b) => {
+        //             if (a.name > b.name) return sort.value;
+        //             else if (a.name < b.name) return -sort.value;
+        //             else return 0;
+        //         }); 
+        //     }else{
+        //         tasks.sort((a,b)=>{
+        //             if (a.status > b.status) return -sort.value;
+        //             else if (a.status < b.status) return sort.value;
+        //             else return 0;
+        //         });
+        //     }
+        // }
         var elementTaskForm = isDisplayForm ? <TaskForm 
                                                onCloseForm={this.onCloseForm}
                                                onSubmit={this.onSubmit} 

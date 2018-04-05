@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import Control from "./components/Control"
 import TaskList from "./components/TaskList"
-import DemoRedux from "./Reduxs/DemoRedux";
 
 class App extends Component {
     constructor(props){
@@ -217,7 +216,6 @@ class App extends Component {
                             onSort={this.onSort}/>
 
                         <TaskList 
-                            tasks = {tasks}
                             onUpdateStatus={this.onUpdateStatus}
                             onRemoveTask={this.onRemoveTask}
                             onOpenEditForm={this.onOpenEditForm}

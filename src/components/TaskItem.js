@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import * as actions from './../actions/index'
+import { connect } from 'react-redux'
 class TaskItem extends Component{
 
     onUpdateStatus = () =>{
@@ -11,7 +12,8 @@ class TaskItem extends Component{
     }
 
     onUpdate = () =>{
-        this.props.onOpenEditForm(this.props.task.id);
+        // this.props.onOpenEditForm(this.props.task.id);
+        this.props.onUpdateStatus(this.props.task.id);
     }
 
 	render(){
@@ -48,4 +50,19 @@ class TaskItem extends Component{
 		);
 	}
 }
-export default TaskItem;
+
+const mapStateToProps = state => {
+    return{};
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return{
+        onUpdateStatus : (id) => {
+            dispatch(actions.updateStatus(id));
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskItem);
+
+

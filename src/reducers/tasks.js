@@ -7,16 +7,17 @@ var myReducer = ((state = initialState, action) => {
 			return state;
 		}
 		case types.ADD_TASK : {
+
 			var newTask = {
 				id : generateID(),
 				name : action.task.name,
-				status : (action.task.status === 'true' ? true : false)
+				status : action.task.status
 			}
 			state.push(newTask);
 			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
-		default: return state;
+		default: return state; 
 	}
 });
 

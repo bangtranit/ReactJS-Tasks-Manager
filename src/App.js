@@ -44,24 +44,6 @@ class App extends Component {
         });
     }
 
-    onSubmit = (data) => {
-        var { tasks } = this.state;
-        if (data.id === "") {
-            data.id = this.generateID();
-            tasks.push(data);
-            
-        }else{
-            var index = this.findById(data.id);
-            if (index !== -1) {
-                tasks[index] = data;
-            }
-        }
-        this.setState({
-            tasks : tasks
-        });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-
     onUpdateStatus = (id) =>{
         var {tasks} = this.state;
         var index = this.findById(id);
@@ -184,7 +166,6 @@ class App extends Component {
         // }
         var elementTaskForm = isDisplayForm ? <TaskForm 
                                                onCloseForm={this.onCloseForm}
-                                               onSubmit={this.onSubmit} 
                                                task={taskEditing}/> : "";
         return (
             <div className="container mt-20">

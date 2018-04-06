@@ -21,11 +21,14 @@ var myReducer = ((state = initialState, action) => {
 
 		case types.UPDATE_STATUS_TASK : {
 			var index = findById(state,action.id);
-			state[index].status = !state[index].status;
+			state[index] = {
+				...state[index],
+				status : !state[index].status
+			}
 			localStorage.setItem('tasks', JSON.stringify(state));
 			return [...state];
 		}
-		
+
 		default: return state; 
 	}
 });

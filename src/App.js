@@ -127,9 +127,7 @@ class App extends Component {
           } = this.state;
 
         var isDisplayForm = this.props.isDisplayForm;
-        
         var elementTaskForm = isDisplayForm ? <TaskForm 
-                                               //onCloseForm={this.onCloseForm}
                                                task={taskEditing}/> : "";
         return (
             <div className="container mt-20">
@@ -148,7 +146,6 @@ class App extends Component {
                             onSort={this.onSort}/>
 
                         <TaskList 
-                            onUpdateStatus={this.onUpdateStatus}
                             onRemoveTask={this.onRemoveTask}
                             onOpenEditForm={this.onOpenEditForm}
                             onFilter={this.onFilter}

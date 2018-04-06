@@ -4,12 +4,13 @@ import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import Control from "./components/Control"
 import TaskList from "./components/TaskList"
+import * as actions from './actions/index';
+import { connect } from 'react-redux'
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            isDisplayForm : false,
             taskEditing : null,
             filter :{
                 name : '',
@@ -122,50 +123,13 @@ class App extends Component {
 
     render() {
         var { 
-            isDisplayForm, 
             taskEditing, 
-            //filter, 
-            //keyword, 
-            //sort
-        } = this.state;
-        // if (filter) {
-        //     if (filter.name) {
-        //         tasks = tasks.filter((task) =>{
-        //             return task.name.toLowerCase().indexOf(filter.name) !== -1;
-        //         });
-        //     }
-        //     tasks = tasks.filter((task) =>{
-        //         if (filter.status === -1) {
-        //             return task;
-        //         }else{
-        //             return task.status === (filter.status === 1 ? true : false);
-        //         }
-        //     });
-        // }
-        // if (keyword) {
-        //     tasks = tasks.filter((task) =>{
-        //         return task.name.toLowerCase().indexOf(keyword) !== -1;
-        //     });
-        // }
-        // if (sort) {
-        //     if (sort.y === 'name') {
-        //                     console.log("aaaaaaa", tasks);
+          } = this.state;
 
-        //         tasks.sort((a,b) => {
-        //             if (a.name > b.name) return sort.value;
-        //             else if (a.name < b.name) return -sort.value;
-        //             else return 0;
-        //         }); 
-        //     }else{
-        //         tasks.sort((a,b)=>{
-        //             if (a.status > b.status) return -sort.value;
-        //             else if (a.status < b.status) return sort.value;
-        //             else return 0;
-        //         });
-        //     }
-        // }
+        var isDisplayForm = this.props.isDisplayForm;
+        
         var elementTaskForm = isDisplayForm ? <TaskForm 
-                                               onCloseForm={this.onCloseForm}
+                                               //onCloseForm={this.onCloseForm}
                                                task={taskEditing}/> : "";
         return (
             <div className="container mt-20">
@@ -195,4 +159,19 @@ class App extends Component {
         );
     }
 }
-export default App;
+
+const mapStateToProps = state => {
+    return {
+        isDisplayForm : state.isDisplayForm
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+    return{
+        onToggleForm : () => {
+            dispatch(actions.toggleForm);
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

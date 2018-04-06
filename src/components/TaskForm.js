@@ -139,7 +139,6 @@ class TaskForm extends Component{
 	}
 }
 
-
 const mapStateToProps = state => {
     return {
 
@@ -150,6 +149,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask : (task) => {
             dispatch(actions.addTask(task));
+        },
+        onCloseForm : () => {
+            dispatch(actions.closeForm());
         }
     }
 }

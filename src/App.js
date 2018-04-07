@@ -11,7 +11,6 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            taskEditing : null,
             filter :{
                 name : '',
                 status: -1
@@ -75,13 +74,8 @@ class App extends Component {
     }
 
     render() {
-        var { 
-            taskEditing, 
-          } = this.state;
-
         var isDisplayForm = this.props.isDisplayForm;
-        var elementTaskForm = isDisplayForm ? <TaskForm 
-                                               task={taskEditing}/> : "";
+        var elementTaskForm = isDisplayForm ? <TaskForm /> : "";
         return (
             <div className="container mt-20">
                 <div className="row">
@@ -99,7 +93,7 @@ class App extends Component {
                             onSort={this.onSort}/>
 
                         <TaskList 
-                            onOpenEditForm={this.onOpenEditForm}
+                            //onOpenEditForm={this.onOpenEditForm}
                             onFilter={this.onFilter}
                         />
                     </div>
@@ -116,11 +110,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch, props) =>{
-    return{
-        onToggleForm : () => {
-            dispatch(actions.toggleForm);
-        }
-    }
+    return{}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

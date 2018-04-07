@@ -25,7 +25,6 @@ class TaskList extends Component{
     }
 
     render(){
-        console.log(this.props.tasks);
     	var {tasks} = this.props;
     	var elemntTasks = tasks.map((task,index) =>{
     		return <TaskItem 

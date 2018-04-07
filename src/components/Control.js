@@ -6,8 +6,12 @@ import { connect } from 'react-redux'
 
 class Control extends Component{
 	onClickAddNewTask = () =>{
-		// this.props.onReciveCickAddNew();
 		this.props.onOpenForm();
+		this.props.onClearTask({
+			id : '',
+			name : '',
+			status : false
+		})
 	}
 	render(){
 		return(
@@ -16,14 +20,14 @@ class Control extends Component{
 					<span className="fa fa-plus mr-5"></span>Thêm Công Việc
 				</button>
 	            <div className="row mt-15">
-	                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	                        <Search />
-	                    </div>
-	                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	                        <Sort 
-	                        onSort={this.props.onSort}
-	                        />
-	                    </div>
+                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <Search />
+                    </div>
+                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <Sort 
+                        onSort={this.props.onSort}
+                        />
+                    </div>
 	            </div>
 			</div>
 		);
@@ -40,7 +44,11 @@ const mapDispatchToProps = (dispatch, props) => {
 	return{
 		onOpenForm : () => {
 			dispatch(actions.openForm());
-		} 
+		},
+		onClearTask : (task) => {
+            dispatch(actions.editTask(task));
+        }
+
 	}
 }
 

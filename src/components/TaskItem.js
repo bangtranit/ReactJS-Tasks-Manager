@@ -14,7 +14,9 @@ class TaskItem extends Component{
     }
 
     onUpdate = () =>{
-        this.props.onUpdateStatus(this.props.task.id);
+        // this.props.onUpdateStatus(this.props.task.id);
+        this.props.onEditTask(this.props.task);
+        this.props.onOpenForm();
     }
 
 	render(){
@@ -66,6 +68,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onCloseForm : () => {
             dispatch(actions.closeForm());
+        },
+        onEditTask : task =>{
+            dispatch(actions.editTask(task));
+        },
+        onOpenForm : () =>{
+            dispatch(actions.openForm());
         }
     };
 }

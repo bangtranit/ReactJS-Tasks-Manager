@@ -27,6 +27,7 @@ class TaskForm extends Component{
     }
 
     componentWillReceiveProps(nextProps){
+        console.log('next props', nextProps);
         if (nextProps && nextProps.task) {
             this.setState({
                 id : nextProps.task.id,
@@ -69,7 +70,7 @@ class TaskForm extends Component{
             event.preventDefault();
         }else{
             event.preventDefault();
-            this.props.onAddTask(this.state);
+            this.props.onSaveTask(this.state);
             this.onClear();
             this.onCloseForm();
         }
@@ -91,6 +92,9 @@ class TaskForm extends Component{
 
 	render(){
         var {id} = this.state;
+
+        if (!this.props.isDisplayForm) return null;
+
 		return(
 			<div className="panel panel-warning">
                 <div className="panel-heading">
@@ -106,7 +110,7 @@ class TaskForm extends Component{
                             	type="text" 
                             	className="form-control" 
                             	name="name"
-                            	value={this.state.name}
+                            	value= {this.state.name}
                             	onChange={this.onChange}
                             />
                         </div>
@@ -141,14 +145,15 @@ class TaskForm extends Component{
 
 const mapStateToProps = state => {
     return {
-
+        isDisplayForm : state.isDisplayForm,
+        task : state.editTask
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddTask : (task) => {
-            dispatch(actions.addTask(task));
+        onSaveTask : (task) => {
+            dispatch(actions.saveTask(task));
         },
         onCloseForm : () => {
             dispatch(actions.closeForm());

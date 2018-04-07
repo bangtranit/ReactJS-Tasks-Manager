@@ -2,7 +2,7 @@ import * as types from './../constants/index'
 
 var initialState = JSON.parse(localStorage.getItem('tasks'))
 var myReducer = ((state = initialState, action) => {
-
+	var index = 1;
 	switch (action.type){
 		case types.LIST_ALL:{
 			return state;
@@ -20,12 +20,20 @@ var myReducer = ((state = initialState, action) => {
 		}
 
 		case types.UPDATE_STATUS_TASK : {
-			var index = findById(state,action.id);
+			index = findById(state,action.id);
 			state[index] = {
 				...state[index],
 				status : !state[index].status
 			}
 			localStorage.setItem('tasks', JSON.stringify(state));
+			return [...state];
+		}
+
+		case types.DELETE_TASK : {
+			console.log(action);
+			index = findById(state,action.id);
+			state.splice(index,1);
+			localStorage.setItem('tasks',JSON.stringify(state));
 			return [...state];
 		}
 

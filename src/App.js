@@ -24,53 +24,6 @@ class App extends Component {
         }
     }
 
-    onReciveCickAddNew = (params) =>{
-        this.onOpenForm();
-        this.setState({
-            taskEditing : null
-        });
-    }
-
-    onOpenForm = () =>{
-        this.setState({
-            isDisplayForm : true
-        });
-    }
-
-    onCloseForm = () =>{
-        this.setState({
-            isDisplayForm : false,
-            taskEditing : null
-
-        });
-    }
-
-    onUpdateStatus = (id) =>{
-        var {tasks} = this.state;
-        var index = this.findById(id);
-        if (index !==   -1) {
-            tasks[index].status = !tasks[index].status;
-        }
-        this.setState({
-            tasks:tasks
-        });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-
-    }
-
-    onRemoveTask = (id) =>{
-        var {tasks} = this.state;
-        var index = this.findById(id);
-        if (index !== -1) {
-            tasks.splice(index,1);
-                this.setState({
-                tasks:tasks
-            });
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-        this.onCloseForm();
-    }
-
     onOpenEditForm = (id) =>{
         var {tasks} = this.state;
         var index = this.findById(id);
@@ -146,7 +99,6 @@ class App extends Component {
                             onSort={this.onSort}/>
 
                         <TaskList 
-                            onRemoveTask={this.onRemoveTask}
                             onOpenEditForm={this.onOpenEditForm}
                             onFilter={this.onFilter}
                         />

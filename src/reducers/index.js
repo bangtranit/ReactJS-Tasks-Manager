@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
-import tasks from './tasks'
-import isDisplayForm from './isDisplayForm'
-import editTask from './editTask'
+import tasks from './ReducerTasks'
+import isDisplayForm from './ReducerIsDisplayForm'
+import editTask from './ReducerEditTask'
 var myReducer = combineReducers({
 	tasks,
 	isDisplayForm,

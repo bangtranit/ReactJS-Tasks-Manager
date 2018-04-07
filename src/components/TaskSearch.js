@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-class Search extends Component{
+class TaskSearch extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -42,4 +42,4 @@ class Search extends Component{
 		);
 	}
 }
-export default Search;
+export default TaskSearch;

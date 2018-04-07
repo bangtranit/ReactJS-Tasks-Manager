@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./App.css";
 import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
-import Control from "./components/Control"
+import TaskControl from "./components/TaskControl"
 import TaskList from "./components/TaskList"
 import * as actions from './actions/index';
 import { connect } from 'react-redux'
@@ -23,17 +23,6 @@ class App extends Component {
         }
     }
 
-    onOpenEditForm = (id) =>{
-        var {tasks} = this.state;
-        var index = this.findById(id);
-        if (index !== -1) {
-            var taskEdit = tasks[index];
-            this.setState({
-                taskEditing : taskEdit,
-            });
-            this.onOpenForm();
-        }
-    }
 
     onFilter = (filterName, filterStatus) =>{
         if (filterStatus === "") {
@@ -87,13 +76,11 @@ class App extends Component {
                     </div>
                     <div 
                     className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                        <Control 
-                            onReciveCickAddNew={this.onReciveCickAddNew}
+                        <TaskControl 
                             onSearch={this.onSearch}
-                            onSort={this.onSort}/>
-
+                            onSort={this.onSort}
+                        />
                         <TaskList 
-                            //onOpenEditForm={this.onOpenEditForm}
                             onFilter={this.onFilter}
                         />
                     </div>

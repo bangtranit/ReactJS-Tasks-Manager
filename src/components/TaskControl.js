@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Search from "./Search"
-import Sort from "./Sort"
+import TaskSearch from "./TaskSearch"
+import TaskSort from "./TaskSort"
 import * as actions from './../actions/index'
 import { connect } from 'react-redux'
 
-class Control extends Component{
+class TaskControl extends Component{
 	onSubmit = () =>{
 		var editTask = this.props;
 		if (editTask && editTask.id !== '') {
@@ -26,10 +26,10 @@ class Control extends Component{
 				</button>
 	            <div className="row mt-15">
                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <Search />
+                        <TaskSearch />
                     </div>
                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <Sort onSort={this.props.onSort}/>
+                        <TaskSort onSort={this.props.onSort}/>
                     </div>
 	            </div>
 			</div>
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch, props) => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Control);
+export default connect(mapStateToProps, mapDispatchToProps)(TaskControl);

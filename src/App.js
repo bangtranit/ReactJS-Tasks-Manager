@@ -4,17 +4,12 @@ import Header from "./components/Header";
 import TaskForm from "./components/TaskForm";
 import TaskControl from "./components/TaskControl"
 import TaskList from "./components/TaskList"
-import * as actions from './actions/index';
 import { connect } from 'react-redux'
 
 class App extends Component {
     constructor(props){
         super(props);
         this.state={
-            filter :{
-                name : '',
-                status: -1
-            },
             keyword : '',
             sort : {
                 by : 'name',
@@ -23,18 +18,6 @@ class App extends Component {
         }
     }
 
-
-    onFilter = (filterName, filterStatus) =>{
-        if (filterStatus === "") {
-            filterStatus = "-1";
-        }
-        this.setState({
-            filter:{
-                name: filterName.toLowerCase(),
-                status: parseInt(filterStatus, 10)
-            }
-        });
-    }
 
     onSearch = (keyword) =>{
         this.setState({
@@ -80,9 +63,7 @@ class App extends Component {
                             onSearch={this.onSearch}
                             onSort={this.onSort}
                         />
-                        <TaskList 
-                            onFilter={this.onFilter}
-                        />
+                        <TaskList />
                     </div>
                 </div>
             </div>

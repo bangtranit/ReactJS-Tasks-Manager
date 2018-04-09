@@ -1,6 +1,9 @@
 import * as types from './../constants/index'
 
 var initialState = JSON.parse(localStorage.getItem('tasks'))
+if (!initialState) {
+	initialState = [];
+}
 var myReducer = ((state = initialState, action) => {
 	var index = 1;
 	switch (action.type){
@@ -15,6 +18,7 @@ var myReducer = ((state = initialState, action) => {
 				status : action.task.status
 			}
 			if (task.id === '') {
+				console.log(task, state);
 				task.id = generateID();
 				state.push(task);
 			}else{

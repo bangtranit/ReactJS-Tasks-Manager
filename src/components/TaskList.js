@@ -27,13 +27,14 @@ class TaskList extends Component{
     }
 
     render(){
-    	var {tasks, filterTable, keyword, sort} = this.props;
+    	var {tasks, filterTable, keyword, sort} = this.props;        
         if (keyword) {
             tasks = tasks.filter((task) =>{
                 return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
             });
         }
         if (filterTable.name) {
+            console.log(filterTable.name);
             tasks = tasks.filter((task) => {
                 return task.name.toLowerCase().indexOf(filterTable.name.toLowerCase()) !== -1;
             });

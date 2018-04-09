@@ -27,7 +27,6 @@ class TaskForm extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('next props', nextProps);
         if (nextProps && nextProps.task) {
             this.setState({
                 id : nextProps.task.id,
@@ -129,7 +128,8 @@ class TaskForm extends Component{
                             <button 
                             	type = "submit" 
                             	className = "btn btn-warning"
-                            	>Thêm</button>&nbsp;
+                            	>{id === '' ? 'Thêm' : 'Lưu Lại'}
+                                </button>&nbsp;
                             <button 
                             	type = "button" 
                             	className = "btn btn-danger"

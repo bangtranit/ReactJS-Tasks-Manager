@@ -65,7 +65,7 @@ class TaskForm extends Component{
 	onSubmit = (event) =>{
         var {name} = this.state;
         if (name === "") {
-            alert("Rỗng");
+            alert("Chủ thớt không cho bạn tạo bug đâu ahihi!");
             event.preventDefault();
         }else{
             event.preventDefault();
@@ -104,7 +104,7 @@ class TaskForm extends Component{
                 <div className="panel-body">
                     <form onSubmit = {this.onSubmit} >
                         <div className="form-group">
-                            <label>Tên :</label>
+                            <label>Tên:</label>
                             <input 
                             	type="text" 
                             	className="form-control" 
@@ -113,7 +113,7 @@ class TaskForm extends Component{
                             	onChange={this.onChange}
                             />
                         </div>
-                        <label>Trạng Thái :</label>
+                        <label>Trạng Thái:</label>
                         <select 
                         	className="form-control"
                         	name="status"
@@ -127,7 +127,7 @@ class TaskForm extends Component{
                         <div className="text-center">
                             <button 
                             	type = "submit" 
-                            	className = "btn btn-warning"
+                            	className = {id === '' ? 'btn btn-primary' : 'btn btn-success'}
                             	>{id === '' ? 'Thêm' : 'Lưu Lại'}
                                 </button>&nbsp;
                             <button 

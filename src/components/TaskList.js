@@ -67,7 +67,7 @@ class TaskList extends Component{
     	var elemntTasks = tasks.map((task,index) =>{
     		return <TaskItem 
     					key = {task.id}
-    					index = {index}
+    					index = {index + 1}
     					task = {task}
     				/>
     	});

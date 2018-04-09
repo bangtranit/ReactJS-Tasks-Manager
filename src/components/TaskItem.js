@@ -14,7 +14,6 @@ class TaskItem extends Component{
     }
 
     onUpdate = () =>{
-        // this.props.onUpdateStatus(this.props.task.id);
         this.props.onEditTask(this.props.task);
         this.props.onOpenForm();
     }

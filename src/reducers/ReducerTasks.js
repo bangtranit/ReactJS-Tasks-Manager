@@ -9,7 +9,6 @@ var myReducer = ((state = initialState, action) => {
 		}
 
 		case types.SAVE_TASK : {
-			console.log('action', action);
 			var task = {
 				id : action.task.id,
 				name : action.task.name,
@@ -37,7 +36,6 @@ var myReducer = ((state = initialState, action) => {
 		}
 
 		case types.DELETE_TASK : {
-			console.log(action);
 			index = findById(state,action.id);
 			state.splice(index,1);
 			localStorage.setItem('tasks',JSON.stringify(state));

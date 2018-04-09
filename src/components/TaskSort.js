@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import * as actions from './../actions/index'
+
 class TaskSort extends Component{
     constructor(props){
         super(props);
         this.state={
-            isOpen : false,
-            sort : {
-                by : 'name',
-                value : 1
-            }
+            isOpen : false
         }
     }
 
@@ -18,17 +17,15 @@ class TaskSort extends Component{
     }
 
     onClick = (sortby, sortvalue) => {
-        this.props.onSort(sortby,sortvalue);
-        this.setState({
-            sort : {
-                by : sortby,
-                value : sortvalue
-            }
-        }); 
+        var sort = {
+            by : sortby,
+            value : sortvalue
+        };
         this.toggeDropDown();
+        this.props.onSortTask(sort);
     }
 	render(){
-        var {sort} = this.state;
+        var {sort} = this.props;
 	    return(
 			<div className= {this.state.isOpen ? "dropdown open" : "dropdown"}>
                 <button 
@@ -87,4 +84,21 @@ class TaskSort extends Component{
 		);
 	}
 }
-export default TaskSort;
+
+const mapStateToProps = state => {
+    return {
+        sort : state.sortTask
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return{
+        onSortTask : (sort) => {
+            dispatch(actions.sortTask(sort));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskSort);
+
+

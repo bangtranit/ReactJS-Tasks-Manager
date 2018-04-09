@@ -4,13 +4,15 @@ import isDisplayForm from './ReducerIsDisplayForm'
 import editTask from './ReducerEditTask'
 import filterTable from './ReducerFilterTable'
 import searchTask from './ReducerSearchTask'
+import sortTask from './ReducerSortTask'
 
 var myReducer = combineReducers({
 	tasks,
-	keyword : searchTask,
+	sortTask,
 	editTask,
 	filterTable,
-	isDisplayForm
+	isDisplayForm,
+	keyword : searchTask
 });
 
 export default myReducer;

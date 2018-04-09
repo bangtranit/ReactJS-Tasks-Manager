@@ -7,44 +7,6 @@ import TaskList from "./components/TaskList"
 import { connect } from 'react-redux'
 
 class App extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            keyword : '',
-            sort : {
-                by : 'name',
-                value : '1'
-            }
-        }
-    }
-
-
-    onSearch = (keyword) =>{
-        this.setState({
-            keyword : keyword.toLowerCase()
-        });
-    }
-
-    onSort = (sortBy, sortValue) =>{
-        this.setState({
-            sort : {
-                by : sortBy,
-                value : sortValue
-            }
-        });
-    }
-
-    findById(id){
-        var {tasks} = this.state;
-        var result = -1;
-        tasks.forEach((task,index) => {
-            if (task.id === id) {
-                result = index;
-            }
-        });
-        return result;
-    }
-
     render() {
         var isDisplayForm = this.props.isDisplayForm;
         var elementTaskForm = isDisplayForm ? <TaskForm /> : "";
@@ -59,10 +21,7 @@ class App extends Component {
                     </div>
                     <div 
                     className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                        <TaskControl 
-                            onSearch={this.onSearch}
-                            onSort={this.onSort}
-                        />
+                        <TaskControl />
                         <TaskList />
                     </div>
                 </div>

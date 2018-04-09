@@ -57,11 +57,9 @@ class TaskList extends Component{
             });
         }else{
             tasks.sort((a,b)=>{
-                if (a.status === b.status) {
-                    return sort.vlaue;
-                }else{
-                    return -sort.value;
-                }
+                if(a.status > b.status) return -sort.value;
+                else if (a.status < b.status) return sort.value;
+                else  return 0;
             });
         }
 
